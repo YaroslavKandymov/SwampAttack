@@ -14,6 +14,8 @@ public class Player : MonoBehaviour
     private int _currentHealth;
     private Animator _animator;
 
+    public int Money { get; private set; }
+
     private void Start()
     {
         _animator = GetComponent<Animator>();
@@ -21,12 +23,16 @@ public class Player : MonoBehaviour
         _currentWeapon = _weapons[0];
     }
 
-    
     private void Update()
     {
         if(Input.GetMouseButtonDown(0))
         {
             _currentWeapon.Shoot(_shootPoint);
         }
+    }
+
+    public void OnEnemyDied(int reward)
+    {
+        Money += reward;
     }
 }
